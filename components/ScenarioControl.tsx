@@ -17,7 +17,7 @@ const TONE_INACTIVE: Record<string, React.CSSProperties> = {
 
 export default function ScenarioControl({ scenario, setScenario }: Props) {
   return (
-    <div className="section-in" style={{
+    <div className="section-in scenario-root" style={{
       background: 'var(--ir-surface)',
       border: '1px solid var(--ir-border)',
       padding: '14px 18px',
@@ -38,7 +38,7 @@ export default function ScenarioControl({ scenario, setScenario }: Props) {
       </div>
 
       {/* Buttons */}
-      <div style={{ display: 'flex', gap: 10, overflowX: 'auto' }}>
+      <div className="scenario-buttons" style={{ display: 'flex', gap: 10, overflowX: 'auto' }}>
         {SCENARIO_ORDER.map(key => {
           const s = SCENARIOS[key]
           const isActive = scenario === key
@@ -74,7 +74,7 @@ export default function ScenarioControl({ scenario, setScenario }: Props) {
       </div>
 
       {/* Active label */}
-      <div style={{
+      <div className="scenario-active" style={{
         display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2,
         borderLeft: '1px solid var(--ir-border)',
         paddingLeft: 18,
@@ -91,9 +91,25 @@ export default function ScenarioControl({ scenario, setScenario }: Props) {
       </div>
 
       <style>{`
-        @media (max-width: 720px) {
-          div[style*="gridTemplateColumns: auto 1fr auto"] {
+        @media (max-width: 767px) {
+          .scenario-root {
             grid-template-columns: 1fr !important;
+            gap: 10px !important;
+            padding: 12px !important;
+          }
+          .scenario-buttons {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+            overflow-x: visible !important;
+          }
+          .scenario-buttons button { padding: 8px 10px !important; font-size: 11px !important; }
+          .scenario-active {
+            border-left: none !important;
+            padding-left: 0 !important;
+            border-top: 1px solid var(--ir-border-soft) !important;
+            padding-top: 8px !important;
+            align-items: flex-start !important;
           }
         }
       `}</style>

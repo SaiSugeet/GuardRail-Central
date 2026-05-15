@@ -27,7 +27,7 @@
   --ir-glow-red:    rgba(213,0,0,0.28);
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; word-break: break-word; overflow-wrap: anywhere; }
 
 html, body {
   margin: 0; padding: 0;
@@ -35,6 +35,8 @@ html, body {
   color: var(--ir-text);
   font-family: var(--font-rajdhani), 'Inter', sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

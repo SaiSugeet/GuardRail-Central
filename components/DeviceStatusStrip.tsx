@@ -88,15 +88,15 @@ function DeviceCard({ name, icon, metrics }: { name: string; icon: React.ReactNo
 
 export default function DeviceStatusStrip({ status }: Props) {
   return (
-    <div className="section-in" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+    <div className="section-in device-strip-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
       {/* Field devices zone */}
-      <div style={{ gridColumn: 'span 2', position: 'relative', paddingTop: 22 }}>
-        <span style={{
+      <div className="device-zone-field" style={{ gridColumn: 'span 2', position: 'relative', paddingTop: 22 }}>
+        <span className="device-zone-label" style={{
           position: 'absolute', top: 0, left: 0,
           fontFamily: 'var(--font-mono)', fontSize: 9.5,
           letterSpacing: 2.5, color: 'var(--ir-text-dim)',
         }}>FIELD DEVICES (ON TRAIN)</span>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div className="device-inner-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <DeviceCard
             name="RASPBERRY PI ZERO 2W"
             icon={<ChipIcon />}
@@ -120,7 +120,7 @@ export default function DeviceStatusStrip({ status }: Props) {
 
       {/* Central server zone */}
       <div style={{ position: 'relative', paddingTop: 22 }}>
-        <span style={{
+        <span className="device-zone-label" style={{
           position: 'absolute', top: 0, left: 0,
           fontFamily: 'var(--font-mono)', fontSize: 9.5,
           letterSpacing: 2.5, color: 'var(--ir-text-dim)',
@@ -139,11 +139,12 @@ export default function DeviceStatusStrip({ status }: Props) {
       <style>{`
         @media (max-width: 1024px) {
           .device-strip-grid { grid-template-columns: 1fr 1fr !important; }
-          .device-zone-field { grid-column: span 2 !important; }
         }
-        @media (max-width: 720px) {
+        @media (max-width: 767px) {
           .device-strip-grid { grid-template-columns: 1fr !important; }
-          .device-zone-field { grid-template-columns: 1fr !important; }
+          .device-zone-field { grid-column: span 1 !important; }
+          .device-inner-grid { grid-template-columns: 1fr !important; }
+          .device-zone-label { display: none !important; }
         }
       `}</style>
     </div>

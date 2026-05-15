@@ -21,10 +21,10 @@ export default function Dashboard({ operator, onLogout }: Props) {
   const sim = useSimulation()
 
   return (
-    <div className="dash-fade" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--ir-navy)' }}>
+    <div className="dash-fade" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--ir-navy)', overflowX: 'hidden' }}>
       <Navbar operator={operator} onLogout={onLogout} />
 
-      <div style={{ padding: '18px 28px 32px', display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <div className="dash-padding" style={{ padding: '18px 28px 32px', display: 'flex', flexDirection: 'column', gap: 18 }}>
         {/* Section A — Devices */}
         <DeviceStatusStrip status={sim.deviceStatus} />
 
@@ -32,7 +32,7 @@ export default function Dashboard({ operator, onLogout }: Props) {
         <ScenarioControl scenario={sim.currentScenario} setScenario={sim.setScenario} />
 
         {/* Section C — Metrics row */}
-        <div className="section-in" style={{
+        <div className="section-in metrics-responsive" style={{
           display: 'grid',
           gridTemplateColumns: '1.3fr 1fr 1fr',
           gap: 16,
@@ -43,13 +43,13 @@ export default function Dashboard({ operator, onLogout }: Props) {
         </div>
 
         {/* Section D — Charts */}
-        <div className="section-in" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div className="section-in charts-responsive" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <IRMSTrendChart history={sim.irmsHistory} />
           <FFTSpectrumChart fftData={sim.fftData} />
         </div>
 
         {/* Section E — Bottom */}
-        <div className="section-in" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 16 }}>
+        <div className="section-in bottom-responsive" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 16 }}>
           <ObstacleLog log={sim.obstacleLog} />
           <SystemHealth stats={sim.systemStats} />
         </div>
@@ -57,18 +57,16 @@ export default function Dashboard({ operator, onLogout }: Props) {
 
       {/* Responsive overrides */}
       <style>{`
-        @media (max-width: 1180px) {
-          .metrics-responsive { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 1024px) {
-          .charts-responsive { grid-template-columns: 1fr !important; }
-          .bottom-responsive  { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 720px) {
+        @media (max-width: 767px) {
+          .dash-padding { padding: 10px 10px 24px !important; gap: 10px !important; }
           .metrics-responsive { grid-template-columns: 1fr !important; }
           .charts-responsive  { grid-template-columns: 1fr !important; }
           .bottom-responsive  { grid-template-columns: 1fr !important; }
-          div[style*="padding: 18px 28px"] { padding: 14px 14px 24px !important; }
+        }
+        @media (min-width: 768px) and (max-width: 1024px) {
+          .metrics-responsive { grid-template-columns: 1fr 1fr !important; }
+          .charts-responsive  { grid-template-columns: 1fr !important; }
+          .bottom-responsive  { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>
