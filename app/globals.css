@@ -3,35 +3,57 @@
 @tailwind utilities;
 
 :root {
-  --ir-navy:        #0A0F1E;
-  --ir-surface:     #111827;
-  --ir-surface-2:   #1C2333;
-  --ir-surface-3:   #232C42;
-  --ir-blue:        #1565C0;
-  --ir-blue-light:  #1E88E5;
-  --ir-blue-deep:   #0D47A1;
-  --ir-orange:      #E65100;
-  --ir-orange-light:#FF6D00;
-  --ir-safe:        #00C853;
-  --ir-monitor:     #FFD600;
-  --ir-alert:       #FF6D00;
-  --ir-critical:    #D50000;
-  --ir-text:        #F0F4FF;
-  --ir-text-muted:  #8896B3;
-  --ir-text-dim:    #5A6785;
-  --ir-border:      #1E3A5F;
-  --ir-border-soft: #182438;
-  --ir-glow-blue:   rgba(21,101,192,0.18);
-  --ir-glow-orange: rgba(230,81,0,0.22);
-  --ir-glow-green:  rgba(0,200,83,0.20);
-  --ir-glow-red:    rgba(213,0,0,0.28);
+  /* Base */
+  --ir-bg:         #F4F6F9;
+  --ir-navy:       #F4F6F9;
+  --ir-surface:    #FFFFFF;
+  --ir-surface-2:  #EEF2F7;
+  --ir-surface-3:  #E3EAF4;
+
+  /* Indian Railways Brand */
+  --ir-blue:       #1A4F8A;
+  --ir-blue-mid:   #2E75C3;
+  --ir-blue-light: #2E75C3;
+  --ir-blue-deep:  #153F6E;
+  --ir-blue-tint:  #EBF3FC;
+
+  /* Accent */
+  --ir-orange:       #D4500A;
+  --ir-orange-light: #E06020;
+
+  /* Status Colors */
+  --ir-safe:         #1B7A3E;
+  --ir-safe-bg:      #EBF7F0;
+  --ir-monitor:      #B8860B;
+  --ir-monitor-bg:   #FEF9E7;
+  --ir-alert:        #C05A00;
+  --ir-alert-bg:     #FDF0E8;
+  --ir-critical:     #A51C1C;
+  --ir-critical-bg:  #FDEBEB;
+
+  /* Typography */
+  --ir-text:           #1A1F2E;
+  --ir-text-secondary: #4A5568;
+  --ir-text-muted:     #4A5568;
+  --ir-text-dim:       #8A96A8;
+
+  /* Borders */
+  --ir-border:       #D1D9E6;
+  --ir-border-light: #E8ECF2;
+  --ir-border-soft:  #E8ECF2;
+  --ir-border-blue:  #B8D0EC;
+
+  /* Shadows */
+  --ir-shadow-sm: 0 1px 3px rgba(26,79,138,0.08);
+  --ir-shadow-md: 0 4px 12px rgba(26,79,138,0.10);
+  --ir-shadow-lg: 0 8px 24px rgba(26,79,138,0.12);
 }
 
 * { box-sizing: border-box; word-break: break-word; overflow-wrap: anywhere; }
 
 html, body {
   margin: 0; padding: 0;
-  background: var(--ir-navy);
+  background: var(--ir-bg);
   color: var(--ir-text);
   font-family: var(--font-rajdhani), 'Inter', sans-serif;
   min-height: 100vh;
@@ -45,30 +67,14 @@ button { font-family: inherit; cursor: pointer; }
 input  { font-family: inherit; }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--ir-surface); }
+::-webkit-scrollbar-track { background: var(--ir-surface-2); }
 ::-webkit-scrollbar-thumb { background: var(--ir-border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--ir-blue); }
+::-webkit-scrollbar-thumb:hover { background: var(--ir-blue-mid); }
 
 /* ── Animations ── */
-@keyframes gridDrift {
-  from { transform: translate(0,0); }
-  to   { transform: translate(56px,56px); }
-}
 @keyframes pulseDot {
-  0%,100% { box-shadow: 0 0 0 0 rgba(0,200,83,0.6); }
-  50%     { box-shadow: 0 0 0 7px rgba(0,200,83,0); }
-}
-@keyframes pulseCrit {
-  0%,100% { box-shadow: 0 0 0 0 rgba(213,0,0,0.6); }
-  50%     { box-shadow: 0 0 0 8px rgba(213,0,0,0); }
-}
-@keyframes alertPulse {
-  0%,100% { box-shadow: inset 0 0 30px -10px rgba(255,109,0,0.4); }
-  50%     { box-shadow: inset 0 0 50px -10px rgba(255,109,0,0.7); }
-}
-@keyframes critGlow {
-  0%,100% { box-shadow: inset 0 0 40px -10px rgba(213,0,0,0.5), 0 0 30px -10px rgba(213,0,0,0.4); }
-  50%     { box-shadow: inset 0 0 60px -10px rgba(213,0,0,0.85), 0 0 50px -10px rgba(213,0,0,0.7); }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
 }
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -79,7 +85,7 @@ input  { font-family: inherit; }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes rowFlash {
-  0%   { background: rgba(255,214,0,0.18); }
+  0%   { background: var(--ir-monitor-bg); }
   100% { background: transparent; }
 }
 
@@ -87,27 +93,24 @@ input  { font-family: inherit; }
 .section-in  { animation: sectionIn .5s ease both; }
 .row-flash   { animation: rowFlash 1.4s ease-out; }
 
-/* ── Grid background (login) ── */
-.grid-bg {
+/* ── Diagonal pattern (login left panel) ── */
+.diagonal-bg {
   position: absolute;
-  inset: -50%;
-  background-image:
-    linear-gradient(115deg, rgba(21,101,192,0.07) 1px, transparent 1px),
-    linear-gradient(25deg,  rgba(21,101,192,0.07) 1px, transparent 1px);
-  background-size: 56px 56px;
-  animation: gridDrift 32s linear infinite;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 20px,
+    rgba(255,255,255,0.05) 20px,
+    rgba(255,255,255,0.05) 21px
+  );
   pointer-events: none;
-}
-.grid-bg::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 30% 40%, transparent 0%, var(--ir-navy) 75%);
 }
 
 /* ── Live dot ── */
 .live-dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: var(--ir-safe);
+  background: #34D399;
   display: inline-block;
   animation: pulseDot 2s ease-in-out infinite;
 }
@@ -121,19 +124,13 @@ input  { font-family: inherit; }
 }
 
 /* ── Classification badge states ── */
-.badge-safe     { background: rgba(0,200,83,0.08);  border-color: rgba(0,200,83,0.45);  color: var(--ir-safe);     }
-.badge-monitor  { background: rgba(255,214,0,0.08); border-color: rgba(255,214,0,0.45); color: var(--ir-monitor);  }
-.badge-alert    { background: rgba(255,109,0,0.10); border-color: rgba(255,109,0,0.55); color: var(--ir-alert);
-  animation: alertPulse 2s ease-in-out infinite;
-}
-.badge-critical { background: rgba(213,0,0,0.12);   border-color: rgba(213,0,0,0.65);   color: #FF5252;
-  animation: critGlow 1.5s ease-in-out infinite;
-}
+.badge-safe     { background: var(--ir-safe-bg);     border-color: rgba(27,122,62,0.30);  color: var(--ir-safe);     }
+.badge-monitor  { background: var(--ir-monitor-bg);  border-color: rgba(184,134,11,0.30); color: var(--ir-monitor);  }
+.badge-alert    { background: var(--ir-alert-bg);    border-color: rgba(192,90,0,0.30);   color: var(--ir-alert);    }
+.badge-critical { background: var(--ir-critical-bg); border-color: rgba(165,28,28,0.30);  color: var(--ir-critical); }
 
-/* ── Scenario button states ── */
-.sc-btn-active-blue   { background: #1565C0; color: white; border-color: #1565C0 !important; }
-.sc-btn-active-yellow { background: #C9A800; color: #0A0F1E; border-color: #C9A800 !important; }
-.sc-btn-active-orange { background: #E65100; color: white; border-color: #E65100 !important; }
-.sc-btn-active-red    { background: #D50000; color: white; border-color: #D50000 !important;
-  animation: pulseCrit 1.8s ease-in-out infinite;
-}
+/* ── Scenario button active states ── */
+.sc-btn-active-blue   { background: var(--ir-blue) !important;     color: white !important; border-color: var(--ir-blue) !important; }
+.sc-btn-active-yellow { background: var(--ir-monitor) !important;  color: white !important; border-color: var(--ir-monitor) !important; }
+.sc-btn-active-orange { background: var(--ir-alert) !important;    color: white !important; border-color: var(--ir-alert) !important; }
+.sc-btn-active-red    { background: var(--ir-critical) !important; color: white !important; border-color: var(--ir-critical) !important; }

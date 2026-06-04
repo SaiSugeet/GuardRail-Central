@@ -17,6 +17,7 @@ export default function SystemHealth({ stats }: Props) {
     <div style={{
       background: 'var(--ir-surface)',
       border: '1px solid var(--ir-border)',
+      boxShadow: 'var(--ir-shadow-sm)',
       padding: 18,
       display: 'flex', flexDirection: 'column',
     }}>
@@ -24,7 +25,13 @@ export default function SystemHealth({ stats }: Props) {
         <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 600, fontSize: 12, letterSpacing: 3, color: 'var(--ir-text-muted)' }}>
           SYSTEM HEALTH
         </div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, letterSpacing: 1.5, color: 'var(--ir-text-dim)', padding: '3px 7px', border: '1px solid var(--ir-border-soft)' }}>
+        <div style={{
+          fontFamily: 'var(--font-mono)', fontSize: 9.5,
+          letterSpacing: 1.5, color: 'var(--ir-text-dim)',
+          padding: '3px 7px',
+          background: 'var(--ir-surface-2)',
+          border: '1px solid var(--ir-border)',
+        }}>
           EDGE + SERVER
         </div>
       </div>
@@ -37,19 +44,19 @@ export default function SystemHealth({ stats }: Props) {
           { k: 'MODEL CONFIDENCE',  v: `${stats.modelConfidence.toFixed(1)} %` },
         ].map(({ k, v }) => (
           <div key={k} style={{
-            background: 'var(--ir-navy)',
+            background: 'var(--ir-surface-2)',
             border: '1px solid var(--ir-border-soft)',
             padding: 12,
           }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, letterSpacing: 2, color: 'var(--ir-text-dim)' }}>{k}</div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 18, marginTop: 6, color: 'var(--ir-text)' }}>{v}</div>
+            <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 600, fontSize: 18, marginTop: 6, color: 'var(--ir-text)', letterSpacing: 1 }}>{v}</div>
           </div>
         ))}
 
         {/* Full-width formula cell */}
         <div style={{
           gridColumn: 'span 2',
-          background: 'var(--ir-navy)',
+          background: 'var(--ir-surface-2)',
           border: '1px solid var(--ir-border-soft)',
           padding: 12,
         }}>
@@ -59,7 +66,7 @@ export default function SystemHealth({ stats }: Props) {
           <div style={{
             display: 'flex', gap: 14, flexWrap: 'wrap',
             fontFamily: 'var(--font-mono)', fontSize: 12,
-            marginTop: 6,
+            marginTop: 6, color: 'var(--ir-text-muted)',
           }}>
             {[
               { label: 'VIB',  val: stats.vibrationComponent.toFixed(1) },
@@ -68,7 +75,7 @@ export default function SystemHealth({ stats }: Props) {
               { label: '=',    val: (stats.vibrationComponent + stats.obstacleComponent + stats.communicationComponent).toFixed(1) },
             ].map(({ label, val }) => (
               <span key={label}>
-                {label} <b style={{ color: 'var(--ir-blue-light)', fontWeight: 500 }}>{val}</b>
+                {label} <b style={{ color: 'var(--ir-blue-mid)', fontWeight: 600 }}>{val}</b>
               </span>
             ))}
           </div>
@@ -80,6 +87,7 @@ export default function SystemHealth({ stats }: Props) {
         fontFamily: 'var(--font-mono)', fontSize: 10,
         letterSpacing: 1.5, color: 'var(--ir-text-dim)',
         display: 'flex', alignItems: 'center', gap: 8,
+        fontStyle: 'italic',
       }}>
         <span style={{
           width: 6, height: 6, background: 'var(--ir-orange)',

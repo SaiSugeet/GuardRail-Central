@@ -21,7 +21,7 @@ export default function Dashboard({ operator, onLogout }: Props) {
   const sim = useSimulation()
 
   return (
-    <div className="dash-fade" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--ir-navy)', overflowX: 'hidden' }}>
+    <div className="dash-fade" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--ir-bg)', overflowX: 'hidden' }}>
       <Navbar operator={operator} onLogout={onLogout} />
 
       <div className="dash-padding" style={{ padding: '18px 28px 32px', display: 'flex', flexDirection: 'column', gap: 18 }}>

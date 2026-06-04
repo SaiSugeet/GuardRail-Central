@@ -46,9 +46,10 @@ function DeviceCard({ name, icon, metrics }: { name: string; icon: React.ReactNo
     <div style={{
       background: 'var(--ir-surface)',
       border: '1px solid var(--ir-border)',
+      borderLeft: '3px solid var(--ir-blue)',
       padding: '16px 18px',
       display: 'flex', flexDirection: 'column', gap: 10,
-      boxShadow: '0 0 30px -10px var(--ir-glow-green)',
+      boxShadow: 'var(--ir-shadow-sm)',
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{
@@ -56,12 +57,13 @@ function DeviceCard({ name, icon, metrics }: { name: string; icon: React.ReactNo
           background: 'var(--ir-surface-2)',
           border: '1px solid var(--ir-border)',
           display: 'grid', placeItems: 'center',
-          color: 'var(--ir-blue-light)',
+          color: 'var(--ir-blue-mid)',
         }}>{icon}</div>
         <div style={{
           fontFamily: 'var(--font-rajdhani)',
           fontWeight: 600, fontSize: 13,
           letterSpacing: 1.5, flex: 1,
+          color: 'var(--ir-text)',
         }}>{name}</div>
         <div style={{
           display: 'flex', alignItems: 'center', gap: 8,
@@ -95,6 +97,7 @@ export default function DeviceStatusStrip({ status }: Props) {
           position: 'absolute', top: 0, left: 0,
           fontFamily: 'var(--font-mono)', fontSize: 9.5,
           letterSpacing: 2.5, color: 'var(--ir-text-dim)',
+          textTransform: 'uppercase',
         }}>FIELD DEVICES (ON TRAIN)</span>
         <div className="device-inner-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <DeviceCard
@@ -124,6 +127,7 @@ export default function DeviceStatusStrip({ status }: Props) {
           position: 'absolute', top: 0, left: 0,
           fontFamily: 'var(--font-mono)', fontSize: 9.5,
           letterSpacing: 2.5, color: 'var(--ir-text-dim)',
+          textTransform: 'uppercase',
         }}>CENTRAL SERVER</span>
         <DeviceCard
           name="UBUNTU LAPTOP SERVER"

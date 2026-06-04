@@ -61,10 +61,10 @@ export const SCENARIO_ORDER: ScenarioKey[] = [
 ]
 
 export const RISK_COLORS: Record<RiskClass, string> = {
-  SAFE:     '#00C853',
-  MONITOR:  '#FFD600',
-  ALERT:    '#FF6D00',
-  CRITICAL: '#D50000',
+  SAFE:     '#1B7A3E',
+  MONITOR:  '#B8860B',
+  ALERT:    '#C05A00',
+  CRITICAL: '#A51C1C',
 }
 
 export const RISK_RANGES: Record<RiskClass, string> = {

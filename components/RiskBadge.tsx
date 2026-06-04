@@ -1,6 +1,6 @@
 'use client'
 
-import { RISK_COLORS, RISK_RANGES } from '@/lib/constants'
+import { RISK_RANGES } from '@/lib/constants'
 import type { RiskClass } from '@/types'
 
 interface Props { riskClass: RiskClass }
@@ -10,6 +10,7 @@ export default function RiskBadge({ riskClass }: Props) {
     <div style={{
       background: 'var(--ir-surface)',
       border: '1px solid var(--ir-border)',
+      boxShadow: 'var(--ir-shadow-md)',
       padding: 18,
       display: 'flex', flexDirection: 'column',
     }}>
@@ -17,7 +18,13 @@ export default function RiskBadge({ riskClass }: Props) {
         <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 600, fontSize: 12, letterSpacing: 3, color: 'var(--ir-text-muted)' }}>
           RISK CLASSIFICATION
         </div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, letterSpacing: 1.5, color: 'var(--ir-text-dim)', padding: '3px 7px', border: '1px solid var(--ir-border-soft)' }}>
+        <div style={{
+          fontFamily: 'var(--font-mono)', fontSize: 9.5,
+          letterSpacing: 1.5, color: 'var(--ir-text-dim)',
+          padding: '3px 7px',
+          background: 'var(--ir-surface-2)',
+          border: '1px solid var(--ir-border)',
+        }}>
           AUTO-GRADE
         </div>
       </div>
@@ -46,7 +53,7 @@ export default function RiskBadge({ riskClass }: Props) {
             position: 'absolute',
             width: 14, height: 14,
             border: '2px solid currentColor',
-            opacity: 0.6,
+            opacity: 0.5,
             ...style,
           }} />
         ))}

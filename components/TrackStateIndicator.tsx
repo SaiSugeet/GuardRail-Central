@@ -7,11 +7,11 @@ import type { ScenarioKey } from '@/types'
 interface Props { scenarioKey: ScenarioKey }
 
 const WAVE_COLOR: Record<ScenarioKey, string> = {
-  NORMAL:         '#1E88E5',
-  JOINT_FAULT:    '#FFD600',
-  LOOSE_FASTENER: '#FFD600',
-  RAIL_CRACK:     '#FF6D00',
-  SEVERE_DAMAGE:  '#FF5252',
+  NORMAL:         '#2E75C3',
+  JOINT_FAULT:    '#B8860B',
+  LOOSE_FASTENER: '#B8860B',
+  RAIL_CRACK:     '#C05A00',
+  SEVERE_DAMAGE:  '#A51C1C',
 }
 
 const INTENSITY: Record<ScenarioKey, number> = {
@@ -54,6 +54,7 @@ export default function TrackStateIndicator({ scenarioKey }: Props) {
     <div style={{
       background: 'var(--ir-surface)',
       border: '1px solid var(--ir-border)',
+      boxShadow: 'var(--ir-shadow-md)',
       padding: 18,
       display: 'flex', flexDirection: 'column',
     }}>
@@ -61,7 +62,13 @@ export default function TrackStateIndicator({ scenarioKey }: Props) {
         <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 600, fontSize: 12, letterSpacing: 3, color: 'var(--ir-text-muted)' }}>
           TRACK STATE
         </div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, letterSpacing: 1.5, color: 'var(--ir-text-dim)', padding: '3px 7px', border: '1px solid var(--ir-border-soft)' }}>
+        <div style={{
+          fontFamily: 'var(--font-mono)', fontSize: 9.5,
+          letterSpacing: 1.5, color: 'var(--ir-text-dim)',
+          padding: '3px 7px',
+          background: 'var(--ir-surface-2)',
+          border: '1px solid var(--ir-border)',
+        }}>
           SCENARIO
         </div>
       </div>
@@ -72,7 +79,7 @@ export default function TrackStateIndicator({ scenarioKey }: Props) {
             fontFamily: 'var(--font-rajdhani)',
             fontWeight: 700, fontSize: 24,
             letterSpacing: 3, lineHeight: 1.1,
-            color: waveColor,
+            color: 'var(--ir-blue)',
           }}>{s.label}</div>
           <div style={{
             fontFamily: 'var(--font-mono)',
@@ -85,7 +92,7 @@ export default function TrackStateIndicator({ scenarioKey }: Props) {
         <div style={{
           display: 'flex', gap: 12, alignItems: 'center',
           padding: 12,
-          background: 'var(--ir-navy)',
+          background: 'var(--ir-surface-2)',
           border: '1px solid var(--ir-border-soft)',
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 1.5 }}>

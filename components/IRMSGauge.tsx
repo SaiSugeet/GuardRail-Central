@@ -40,10 +40,10 @@ export default function IRMSGauge({ value, riskClass }: Props) {
   }
 
   const segments = [
-    { from: 0,    to: 0.25, color: '#00C853' },
-    { from: 0.25, to: 0.50, color: '#FFD600' },
-    { from: 0.50, to: 0.75, color: '#FF6D00' },
-    { from: 0.75, to: 1.00, color: '#D50000' },
+    { from: 0,    to: 0.25, color: '#1B7A3E' },
+    { from: 0.25, to: 0.50, color: '#B8860B' },
+    { from: 0.50, to: 0.75, color: '#C05A00' },
+    { from: 0.75, to: 1.00, color: '#A51C1C' },
   ]
 
   const svgH = size * 0.78
@@ -52,6 +52,7 @@ export default function IRMSGauge({ value, riskClass }: Props) {
     <div style={{
       background: 'var(--ir-surface)',
       border: '1px solid var(--ir-border)',
+      boxShadow: 'var(--ir-shadow-md)',
       padding: 18,
       display: 'flex',
       flexDirection: 'column',
@@ -61,7 +62,13 @@ export default function IRMSGauge({ value, riskClass }: Props) {
         <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 600, fontSize: 12, letterSpacing: 3, color: 'var(--ir-text-muted)' }}>
           IRMS GAUGE
         </div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, letterSpacing: 1.5, color: 'var(--ir-text-dim)', padding: '3px 7px', border: '1px solid var(--ir-border-soft)' }}>
+        <div style={{
+          fontFamily: 'var(--font-mono)', fontSize: 9.5,
+          letterSpacing: 1.5, color: 'var(--ir-text-dim)',
+          padding: '3px 7px',
+          background: 'var(--ir-surface-2)',
+          border: '1px solid var(--ir-border)',
+        }}>
           REAL-TIME
         </div>
       </div>
@@ -69,7 +76,7 @@ export default function IRMSGauge({ value, riskClass }: Props) {
       {/* Digital Readout Box */}
       <div className="irms-readout" style={{
         background: 'var(--ir-surface-2)',
-        border: '1px solid var(--ir-border)',
+        border: '1px solid var(--ir-border-blue)',
         borderRadius: 8,
         padding: '14px 20px',
         textAlign: 'center',
@@ -104,7 +111,7 @@ export default function IRMSGauge({ value, riskClass }: Props) {
           {/* Track */}
           <path
             d={`M ${arc(0)[0]} ${arc(0)[1]} A ${r} ${r} 0 0 1 ${arc(1)[0]} ${arc(1)[1]}`}
-            stroke="#182438" strokeWidth="14" fill="none" strokeLinecap="butt"
+            stroke="#D1D9E6" strokeWidth="14" fill="none" strokeLinecap="butt"
           />
           {/* Colored segments */}
           {segments.map((s, i) => (
@@ -112,14 +119,14 @@ export default function IRMSGauge({ value, riskClass }: Props) {
               key={i}
               d={segPath(s.from, s.to)}
               stroke={s.color} strokeWidth="14" fill="none"
-              opacity={frac >= s.from ? 0.95 : 0.18}
+              opacity={frac >= s.from ? 0.90 : 0.15}
               style={{ transition: 'opacity .4s' }}
             />
           ))}
           {/* Ticks */}
           {[0, 0.25, 0.5, 0.75, 1].map((f, i) => {
             const t = tickAt(f)
-            return <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke="#5A6785" strokeWidth="1.2" />
+            return <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke="#8A96A8" strokeWidth="1.2" />
           })}
           {/* Labels */}
           {[0, 25, 50, 75, 100].map((n, i) => {
@@ -128,7 +135,7 @@ export default function IRMSGauge({ value, riskClass }: Props) {
             return (
               <text key={i} x={cx + lr * Math.cos(a)} y={cy + lr * Math.sin(a)}
                 fontFamily="var(--font-mono)" fontSize="10"
-                fill="#5A6785" textAnchor="middle" dominantBaseline="middle">
+                fill="#8A96A8" textAnchor="middle" dominantBaseline="middle">
                 {n}
               </text>
             )
@@ -138,7 +145,7 @@ export default function IRMSGauge({ value, riskClass }: Props) {
             <line x1={cx} y1={cy} x2={needleX} y2={needleY}
               stroke={color} strokeWidth="2.5" strokeLinecap="round" />
             <circle cx={cx} cy={cy} r="7" fill={color} />
-            <circle cx={cx} cy={cy} r="3" fill="#0A0F1E" />
+            <circle cx={cx} cy={cy} r="3" fill="#F4F6F9" />
           </g>
         </svg>
       </div>
@@ -147,7 +154,7 @@ export default function IRMSGauge({ value, riskClass }: Props) {
       <div style={{
         fontFamily: 'var(--font-rajdhani)', fontWeight: 500,
         fontSize: 12, letterSpacing: 2,
-        color: 'var(--ir-text-muted)',
+        color: 'var(--ir-text-dim)',
         textAlign: 'center', marginTop: 6,
       }}>Infrastructure Risk Monitoring Score</div>
 

@@ -9,10 +9,10 @@ interface Props {
 }
 
 const TONE_INACTIVE: Record<string, React.CSSProperties> = {
-  blue:   { borderColor: 'rgba(30,136,229,0.5)', color: 'var(--ir-text-muted)' },
-  yellow: { borderColor: 'rgba(255,214,0,0.45)', color: '#E2C84A' },
-  orange: { borderColor: 'rgba(255,109,0,0.6)',  color: '#F4A064' },
-  red:    { borderColor: 'rgba(213,0,0,0.65)',   color: '#FF6B6B' },
+  blue:   { borderColor: 'var(--ir-blue)',     color: 'var(--ir-blue)'     },
+  yellow: { borderColor: 'var(--ir-monitor)',  color: 'var(--ir-monitor)'  },
+  orange: { borderColor: 'var(--ir-alert)',    color: 'var(--ir-alert)'    },
+  red:    { borderColor: 'var(--ir-critical)', color: 'var(--ir-critical)' },
 }
 
 export default function ScenarioControl({ scenario, setScenario }: Props) {
@@ -20,6 +20,7 @@ export default function ScenarioControl({ scenario, setScenario }: Props) {
     <div className="section-in scenario-root" style={{
       background: 'var(--ir-surface)',
       border: '1px solid var(--ir-border)',
+      boxShadow: 'var(--ir-shadow-sm)',
       padding: '14px 18px',
       display: 'grid',
       gridTemplateColumns: 'auto 1fr auto',
@@ -64,6 +65,7 @@ export default function ScenarioControl({ scenario, setScenario }: Props) {
                 whiteSpace: 'nowrap',
                 cursor: 'pointer',
                 transition: 'all .2s',
+                color: 'var(--ir-text-muted)',
                 ...(!isActive ? TONE_INACTIVE[s.color] : {}),
               }}
             >
@@ -86,7 +88,7 @@ export default function ScenarioControl({ scenario, setScenario }: Props) {
         <div style={{
           fontFamily: 'var(--font-rajdhani)',
           fontWeight: 700, fontSize: 18,
-          letterSpacing: 3,
+          letterSpacing: 3, color: 'var(--ir-blue)',
         }}>{SCENARIOS[scenario].label}</div>
       </div>
 
